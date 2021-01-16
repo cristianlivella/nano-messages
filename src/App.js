@@ -128,7 +128,7 @@ class App extends React.Component {
                         <Link href="https://github.com/cristianlivella/nano-messages" target="_blank">github.com/cristianlivella/nano-messages</Link>
                     </Typography>
                     <Typography variant="body2" style={{textAlign: 'center'}}>
-                        API by <Link href="https://api.nanos.cc/" target="_blank">api.nanos.cc</Link> and <Link href="https://mynano.ninja/api" target="_blank">mynano.ninja</Link><br/>
+                        API by <Link href="https://api.nanos.cc/" target="_blank">api.nanos.cc</Link>, <Link href="https://mynano.ninja/api" target="_blank">mynano.ninja</Link> and <Link href="https://vox.nanos.cc/api" target="_blank">vox.nanos.cc/api</Link><br/>
                         Background by <Link href="https://steemit.com/cryptocurrency/@lucasols/nano-4k-wallpapers" target="_blank">lucasols</Link><br/>
                     </Typography>
                 </Paper>

@@ -26,7 +26,7 @@ import TextField from '@material-ui/core/TextField';
 class NewMessageModal extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {currentStep: 1, message: '', enoughBalance: false, address: '', messagePrice: '200000000000000000000000000', sendLink: '', sending: false, dynamicMessage: '', gif: '', progress: {done: 0, total: 0}}
+        this.state = {currentStep: 1, message: '', enoughBalance: false, address: '', messagePrice: '200000000000000000000000000', sendLink: '', sending: false, dynamicMessage: '', gif: '', lastGifChange: 0, progress: {done: 0, total: 0}}
     }
 
     componentDidUpdate(prevProps) {
@@ -87,18 +87,22 @@ class NewMessageModal extends React.Component {
     }
 
     changeGif = (type) => {
+        if (this.state.lastGifChange > Date.now() - (1000 * 10) && type === 1) {
+            return;
+        }
         const gifs = [];
         gifs[1] = ['bAplZhiLAsNnG', 'QX15lZJbifeQPzcNDt', 'JIX9t2j0ZTN9S', '5Zesu5VPNGJlm', '13HBDT4QSTpveU', 'f5dv1g0Af3KNJneSC3', 'o0vwzuFwCGAFO', '13rQ7rrTrvZXlm', 'l0K4hO8mVvq8Oygjm', '11BbGyhVmk4iLS', 'xiAqCzbB3eZvG', 'UYmY3vRnWpHHO', 'jLK74MUW07RaU', '3o7qE1YN7aBOFPRw8E', 'Oj5w7lOaR5ieNpuBhn', '11JTxkrmq4bGE0', 'sANGK3xBT0ipq', '5tsjxsQXLl4GcNsd5S', '5WILqPq29TyIkVCSej', 'LHZyixOnHwDDy', 'URW2lPzihY5fq', 'UFGj6EYw5JhMQ', 'jUZmz3kAiAuLC', 'amUVFzg1wNZKg'];
         gifs[2] = ['26u4lOMA8JKSnL9Uk', '3o6ZsZbUukGiYMf2a4', 'Rk8wCrJCrjRJ2MyLrb', 'l0Iyl55kTeh71nTXy', '3o7qDEq2bMbcbPRQ2c', 'ZdUnQS4AXEl1AERdil', 'd31w24psGYeekCZy', 'YRuFixSNWFVcXaxpmX', 'fvT39aAmEvCJi3Bgsf', '1BhG0U58TwNllcEXcd'];
-        this.setState({gif: gifs[type][Math.floor(Math.random() * gifs[type].length)]})
+        this.setState({gif: gifs[type][Math.floor(Math.random() * gifs[type].length)], lastGifChange: Date.now()})
     }
 
     startSending = () => {
-        this.setState({currentStep: 3, dynamicMessage: '', sending: true});
-        utilities.sendMessage(this.state.message, this.props.channel, this.progressCallback).then((res) => {
-            this.setState({sending: false});
-            this.props.updateMessages();
-        })
+        this.setState({currentStep: 3, dynamicMessage: '', sending: true, lastGifChange: Date.now()}, () => {
+            utilities.sendMessage(this.state.message, this.props.channel, this.progressCallback).then((res) => {
+                this.setState({sending: false});
+                this.props.updateMessages();
+            })
+        });
     }
 
     render() {

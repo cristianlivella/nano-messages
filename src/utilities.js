@@ -83,6 +83,22 @@ export async function getPending(address, threshold = 1) {
 }
 
 export async function computeWork(hash, type) {
+    try {
+        const cloudWork = await fetch('https://vox.nanos.cc/api', {
+            method: 'post',
+            body: '{"action": "work_generate", "hash": "' + hash + '"}',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+        }).then(res => res.json());
+        if (cloudWork && cloudWork.work && nanocurrency.checkWork(cloudWork.work)) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve(cloudWork.work);
+                }, 500)
+            })
+        }
+    } catch (e) {}
     const difficulty = await getDifficulty();
     return new Promise(resolve => {
         const realDifficulty = '0x' + (difficulty[type].slice(0, -8))
