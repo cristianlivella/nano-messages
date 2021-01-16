@@ -1,0 +1,49 @@
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: url('background.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    overflow: auto !important;
+    overflow-wrap: break-word;
+}
+
+.app {
+    padding: 20px;
+}
+
+.left-btn, .right-btn {
+    text-align: center;
+    margin: 14px 0;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+@media only screen and (min-width: 800px) {
+    .left-btn {
+        float: left;
+        width: 50%;
+        text-align: left;
+        height: 40px;
+    }
+    .right-btn {
+        float: right;
+        width: 50%;
+        text-align: right;
+        height: 40px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        background: url('background.png') center top fixed;
+        background-size: 320%;
+    }
+}
