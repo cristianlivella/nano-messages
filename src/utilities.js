@@ -7,7 +7,7 @@ import { codec } from "rfc4648";
 import * as ASCIIFolder from 'fold-to-ascii/lib/ascii-folder';
 
 const representative = 'nano_1natrium1o3z5519ifou7xii8crpxpk8y65qmkih8e8bpsjri651oza8imdd';
-const messagePrice = '1900000000000000000000000000'
+const messagePrice = '190000000000000000000000000'
 const maxMessageBlock = 50
 const encoding = {
   chars: "13456789abcdefghijkmnopqrstuwxyz",

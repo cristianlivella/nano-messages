@@ -26,7 +26,7 @@ import TextField from '@material-ui/core/TextField';
 class NewMessageModal extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {currentStep: 1, message: '', enoughBalance: false, address: '', messagePrice: '2000000000000000000000000000', sendLink: '', sending: false, dynamicMessage: '', gif: '', progress: {done: 0, total: 0}}
+        this.state = {currentStep: 1, message: '', enoughBalance: false, address: '', messagePrice: '200000000000000000000000000', sendLink: '', sending: false, dynamicMessage: '', gif: '', progress: {done: 0, total: 0}}
     }
 
     componentDidUpdate(prevProps) {
