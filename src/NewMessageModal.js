@@ -3,6 +3,7 @@ import * as moment from 'moment'
 import * as utilities from './utilities.js'
 import * as QRCode from 'qrcode.react'
 import * as bigInt from 'big-integer';
+import giphy from './giphy.png';
 
 import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
@@ -30,12 +31,12 @@ class NewMessageModal extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.open && prevProps.open !== this.props.open) {
-            this.setState({currentStep: 1, message: ''});
-            utilities.getCurrentAddr().then(res => {
-                this.setState({address: res, sendLink: 'nano:' + res + '?amount=' + this.state.messagePrice});
-            })
+            this.setState({currentStep: 1, message: '', dynamicMessage: '', progress: {done: 0, total: 0}});
             utilities.receiveAll().then(() => {
                 utilities.enoughBalance(0).then(res => {
+                    utilities.getCurrentAddr().then(res => {
+                        this.setState({address: res, sendLink: 'nano:' + res + '?amount=' + this.state.messagePrice});
+                    })
                     this.setState({enoughBalance: res});
                 })
             })
@@ -80,7 +81,9 @@ class NewMessageModal extends React.Component {
 
     progressCallback = (status) => {
         this.setState({progress: status});
-        this.changeGif((status.done === status.total) ? 2 : 1)
+        if (status.done > 0) {
+            this.changeGif((status.done === status.total) ? 2 : 1)
+        }
     }
 
     changeGif = (type) => {
@@ -100,7 +103,7 @@ class NewMessageModal extends React.Component {
 
     render() {
         return (
-            <Dialog onClose={() => this.handleClose()} aria-labelledby="customized-dialog-title" open={this.props.open} fullWidth={true} maxWidth={'md'}>
+            <Dialog onClose={() => this.handleClose()} aria-labelledby="customized-dialog-title" open={this.props.open} fullWidth={true} maxWidth={'md'} disableBackdropClick={this.state.sending} disableEscapeKeyDown={this.state.sending}>
                 <DialogTitle id="customized-dialog-title" onClose={() => this.handleClose()}>
                     New message
                 </DialogTitle>
@@ -143,7 +146,7 @@ class NewMessageModal extends React.Component {
                         <div>
                             <img src={'https://media.giphy.com/media/' + this.state.gif + '/giphy.gif'} style={{height: '200px', maxWidth: '100%', display: 'block', margin: '0 auto', cursor: 'pointer'}} onClick={() => window.open('https://giphy.com/gifs/' + this.state.gif, '_blank')}/>
                             <div style={{position: 'relative', top: '-26px'}}>
-                                <img src={'giphy.png'} style={{height: '24px', float: 'left'}}/>
+                                <img src={giphy} style={{height: '24px', float: 'left'}}/>
                                 <Link href={'https://giphy.com/gifs/' + this.state.gif} target='_blank' style={{display: 'block', float: 'left', marginLeft: '3px', padding: '4px', marginTop: '-1px', background: '#ffffff'}}>via GIPHY</Link>
                                 <div style={{float: 'none', clear: 'both'}} />
                             </div>

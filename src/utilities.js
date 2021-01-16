@@ -244,7 +244,6 @@ export async function sendMessage(message, channelAddress, progressCallback) {
         else {
             balance = bigInt(0);
         }
-        console.log(sendAddress);
         const sendBlock = await nanocurrency.createBlock(secretKey, {balance: balance.toString(), representative: representative, work: "", link: sendAddress, previous: frontier})
         const work = await computeWork(frontier, 'send')
         sendBlock.block.work = work
@@ -284,7 +283,7 @@ export async function getMessagesInChannel(channelAddress, limit = 10) {
         const history = await getAccountHistory(source);
         const historyBlocks = history.history;
         let found = false;
-        for (let j = 0; (j < historyBlocks.length && j < 20); j++) {
+        for (let j = 0; (j < historyBlocks.length && j < 5); j++) {
             if (historyBlocks[j].hash === hashes[i]) {
                 found = j;
                 break;
