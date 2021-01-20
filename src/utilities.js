@@ -153,7 +153,7 @@ export async function receiveAll(progressCallback) {
 export function getMessageSendAddresses(message) {
     message = clearUnicodeChars(message);
     const messageEncoded = encodeMessage(message);
-    const chunks = messageEncoded.match(/.{51}/g);
+    const chunks = messageEncoded.match(/.{51}/g) || [];
     const addresses = chunks.map(c => {
         return createMessageChunkAddess(c);
     })
