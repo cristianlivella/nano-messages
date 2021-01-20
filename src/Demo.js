@@ -86,7 +86,7 @@ class Demo extends React.Component {
                         onChange={(e) => this.handleChannelChange(e.target.value.slice(0, 25))}
                     />
                     <TextField
-                        label="Message cleaned - character in UTF-8 one-byte range"
+                        label="Message cleaned (UTF-8 1-byte range)"
                         variant="outlined"
                         size="small"
                         style={{width: '100%', marginBottom: '14px'}}
@@ -97,7 +97,7 @@ class Demo extends React.Component {
                         value={this.state.cleaned}
                     />
                     <TextField
-                        label="Message encoded using base32 Nano encoding"
+                        label="Message base32 encoded"
                         variant="outlined"
                         size="small"
                         style={{width: '100%', marginBottom: '14px'}}
@@ -108,7 +108,7 @@ class Demo extends React.Component {
                         value={this.state.encoded}
                     />
                     <TextField
-                        label="Number of blocks - Nano addresses/transaction"
+                        label="Number of Nano blocks/addresses"
                         variant="outlined"
                         size="small"
                         style={{width: '100%', marginBottom: '14px'}}
