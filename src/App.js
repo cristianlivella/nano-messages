@@ -1,13 +1,13 @@
 import React from 'react';
 import Home from './Home';
 import Demo from './Demo';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 
 class App extends React.Component {
 
     render() {
         return (
-            <Router basename={process.env.PUBLIC_URL}>
+            <Router>
                 <Switch>
                     <Route path="/" exact>
                         <Home />
