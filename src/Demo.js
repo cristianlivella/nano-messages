@@ -5,6 +5,7 @@ import NewMessageModal from './NewMessageModal'
 import Policy from './Policy'
 import * as utilities from './utilities.js'
 import { sha256 } from 'js-sha256';
+import { withRouter } from 'react-router-dom'
 
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -66,7 +67,7 @@ class Demo extends React.Component {
                         Nano Messages demo
                     </Typography>
                     <Typography variant="body1" style={{textAlign: 'center', color: '#00428e', marginBottom: '16px'}}>
-                        Click <Link href={process.env.PUBLIC_URL}>here</Link> to go to the home page.
+                        Click <Link href="#" onClick={() => this.props.history.push("/")}>here</Link> to go to the home page.
                     </Typography>
                     <TextField
                         label="Message"
@@ -184,4 +185,4 @@ class Demo extends React.Component {
     }
 }
 
-export default Demo
+export default withRouter(Demo)
