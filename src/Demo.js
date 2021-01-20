@@ -66,7 +66,7 @@ class Demo extends React.Component {
                     <Typography variant="h3" style={{textAlign: 'center', color: '#00428e'}}>
                         Nano Messages demo
                     </Typography>
-                    <Typography variant="body1" style={{textAlign: 'center', color: '#00428e', marginBottom: '16px'}}>
+                    <Typography variant="body1" style={{textAlign: 'center', marginBottom: '16px'}}>
                         Click <Link href="#" onClick={() => this.props.history.push("/")}>here</Link> to go to the home page.
                     </Typography>
                     <TextField
