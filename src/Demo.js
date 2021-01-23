@@ -86,7 +86,7 @@ class Demo extends React.Component {
                         onChange={(e) => this.handleChannelChange(e.target.value.slice(0, 25))}
                     />
                     <TextField
-                        label="Message cleaned (UTF-8 1-byte range)"
+                        label="Message cleaned (UTF-16 1-byte)"
                         variant="outlined"
                         size="small"
                         style={{width: '100%', marginBottom: '14px'}}
