@@ -9,7 +9,7 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
+    "@testing-library/user-event": "^12.8.3",
     "big-integer": "^1.6.48",
     "big-number": "^2.0.0",
     "blakejs": "^1.1.0",
